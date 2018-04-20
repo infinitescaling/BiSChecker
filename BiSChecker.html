@@ -1,0 +1,281 @@
+<html>
+<head>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BiS Week Calculator</title>
+
+<head>
+	<script type="text/javascript">
+
+	var displayFloorOne = function(){
+		console.log("Hi I got to display");
+		console.log(floorOneWeeks().toString());
+		$("#floorOneDiv").text("It will take " + floorOneWeeks().toString() +" weeks to get BiS from Floor One.");
+		$("#floorOneDiv").show();
+	}
+
+	var displayFloorTwo = function(){
+		console.log("Hi I got to display");
+		$("#floorTwoDiv").text("It will take " + floorTwoWeeks().toString() +" weeks to get BiS from Floor Two.");
+		$("#floorTwoDiv").show();
+	}
+	var displayFloorThree = function(){
+		$("#floorThreeDiv").text("It will take " + floorThreeWeeks().toString() +" weeks to get BiS from Floor Three.");
+		$("#floorThreeDiv").show();
+	}
+	var displayFloorFour = function(){
+		$("#floorFourDiv").text("It will take " + floorFourWeeks().toString() +" weeks to get BiS from Floor Four.");
+		$("#floorFourDiv").show();
+	}
+
+function calculateWeeks(){
+	var weeks = 0;
+	$("#floorOneDiv").text('')
+	$("#floorTwoDiv").text('')
+	$("#floorThreeDiv").text('')
+	$("#floorFourDiv").text('')
+	displayFloorOne();
+	displayFloorTwo();
+	displayFloorThree();
+	displayFloorFour();
+	var floorOneCount = floorOneWeeks();
+	var floorTwoCount = floorTwoWeeks();
+	var floorThreeCount = floorThreeWeeks();
+	var floorFourCount = floorFourWeeks();
+
+	var highest = floorOneCount;
+
+	weeks = weeks + floorOneCount + floorTwoCount + floorThreeCount + floorFourCount;
+
+	if(floorTwoCount > highest){ highest = floorTwoCount;}
+	else if (floorThreeCount > highest){ highest = floorThreeCount;}
+	else if (floorFourCount > highest) { highest = floorFourCount;}
+
+	if(highest === 0 ){
+		$("#weeklyTotal").text("Congratulations, you are BiS.");
+	}else{
+		$("#weeklyTotal").text("It will take " + highest + " weeks total to get BiS.");
+	}
+	$("#weeklyTotal").show();
+
+	//alert(weeks);
+	return weeks;
+}
+function floorOneWeeks(){
+	var weeks = 0;
+	if($("#neckStatus").val() === "Drop"){
+		weeks = weeks + 4;
+	}
+	if($("#earringStatus").val() === "Drop"){
+		weeks = weeks + 4;
+	
+	}
+	if($("#braceletStatus").val() === "Drop"){
+		weeks = weeks + 4;
+	
+	}
+	if($("#ring1Status").val() === "Drop"){
+		weeks = weeks + 4;
+	
+	}
+	if($("#ring2Status").val() === "Drop"){
+		weeks = weeks + 4;	
+	}
+	if($("#waistStatus").val() === "Drop"){
+		weeks = weeks + 6;
+
+	}
+	//console.log("It will take " + weeks + " weeks for full BiS on Floor One");
+	return weeks;
+}
+
+function floorTwoWeeks(){
+	var weeks = 0;
+	if($("#headStatus").val() === "Drop"){
+		weeks = weeks + 6;
+	}
+	if($("#handStatus").val() === "Drop"){
+		weeks = weeks + 6;
+	}
+	if($("#feetStatus").val() === "Drop"){
+		weeks = weeks + 6;
+	}
+	if($("#waistStatus").val() === "Tome"){
+		weeks = weeks + 4;
+	}
+	if($("#earringStatus").val() === "Tome"){
+		weeks = weeks + 4;
+	}	
+	if($("#neckStatus").val() === "Tome"){
+		weeks = weeks + 4;
+	}
+	if($("#braceletStatus").val() === "Tome"){
+		weeks = weeks + 4;
+	}
+	if($("#ring1Status").val() === "Tome"){
+		weeks = weeks + 4;
+	}
+	if($("#ring2Status").val() === "Tome"){
+		weeks = weeks + 4;
+	}
+
+	//console.log("It will take " + weeks + " weeks for full BiS on Floor Two");
+	return weeks;
+}
+
+function floorThreeWeeks(){
+	var weeks = 0;
+
+	if($("#legStatus").val() === "Drop"){
+		weeks = weeks + 8;
+	}
+	if($("#headStatus").val() === "Tome"){
+		weeks = weeks + 4;
+	}
+	if($("#bodyStatus").val() === "Tome"){
+		weeks = weeks + 4;
+	}
+	if($("#handStatus").val() === "Tome"){
+		weeks = weeks + 4;
+	}
+	if($("#legStatus").val() === "Tome"){
+		weeks = weeks + 4;
+	}
+	if($("#feetStatus").val() === "Tome"){
+		weeks = weeks + 4;
+	}	
+
+	//console.log("It will take " + weeks + " weeks for full BiS on Floor Three");
+	return weeks;
+
+}
+function floorFourWeeks(){
+	var weeks = 0;
+	if($("#shieldStatus").val() === "Drop"){ //this is a paladin
+		if($("#weaponStatus").val() === "Drop"){ weeks = weeks + 5;}
+		weeks = weeks + 3;
+	}
+	else if ($("#weaponStatus").val().toString() == "Drop"){
+		weeks = weeks + 8;
+	}
+
+	//console.log("It will take " + weeks + " weeks for full BiS on Floor Four");
+	return weeks;
+}
+
+	</script>	
+</head>
+
+<h2>BiS Week Calculator</h2>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed
+
+}
+
+td, th, tr {
+    border: 1px solid #dddddd;
+    text-align: left;
+
+    padding: 8px;
+}
+</style>
+
+<table>
+	<tr>
+		<th>Weapon</th>
+		<th>Head</th>
+		<th>Body</th>
+		<th>Hand</th>
+		<th>Waist</th>
+		<th>Leg</th>
+		<th>Feet</th>
+		<th>Shield</th>
+		<th>Earring</th>
+		<th>Neck</th>
+		<th>Bracelet</th>
+		<th>Ring1</th>
+		<th>Ring2</th>
+	</tr>
+</table>
+<table>
+	<tr>
+		<th><select id="weaponStatus">
+			<option value="BiS">BiS</option>
+			<option value="Drop">Drop</option>
+		</select></th>
+		<th><select id="headStatus">
+			<option value="BiS">BiS</option>
+			<option value="Tome">Tome</option>
+			<option value="Drop">Drop</option>
+		</select></th>
+		<th><select id="bodyStatus">
+			<option value="BiS">BiS</option>
+			<option value="Tome">Tome</option>
+			<option value="Drop">Drop</option>
+		</select></th>
+		<th><select id="handStatus">
+			<option value="BiS">BiS</option>
+			<option value="Tome">Tome</option>
+			<option value="Drop">Drop</option>
+		</select></th>
+		<th><select id="waistStatus">
+			<option value="BiS">BiS</option>
+			<option value="Tome">Tome</option>
+			<option value="Drop">Drop</option>
+		</select></th>
+		<th><select id="legStatus">
+			<option value="BiS">BiS</option>
+			<option value="Tome">Tome</option>
+			<option value="Drop">Drop</option>
+		</select></th>
+		<th><select id="feetStatus">
+			<option value="BiS">BiS</option>
+			<option value="Tome">Tome</option>
+			<option value="Drop">Drop</option>
+		</select></th>
+		<th><select id="shieldStatus">
+			<option value="BiS">BiS</option>
+			<option value="Tome">Tome</option>
+			<option value="Drop">Drop</option>
+		</select></th>		
+		<th><select id="earringStatus">
+			<option value="BiS">BiS</option>
+			<option value="Tome">Tome</option>
+			<option value="Drop">Drop</option>
+		</select></th>		
+		<th><select id="neckStatus">
+			<option value="BiS">BiS</option>
+			<option value="Tome">Tome</option>
+			<option value="Drop">Drop</option>
+		</select></th>		
+		<th><select id="braceletStatus">
+			<option value="BiS">BiS</option>
+			<option value="Tome">Tome</option>
+			<option value="Drop">Drop</option>
+		</select></th>		
+		<th><select id="ring1Status">
+			<option value="BiS">BiS</option>
+			<option value="Tome">Tome</option>
+			<option value="Drop">Drop</option>
+		</select></th>		
+		<th><select id="ring2Status">
+			<option value="BiS">BiS</option>
+			<option value="Tome">Tome</option>
+			<option value="Drop">Drop</option>
+		</select></th>	
+	</tr>
+</table>
+
+<button onclick="calculateWeeks()">Calculate</button><br/>
+<div id="floorOneDiv" style="display:none;"></div>
+<div id="floorTwoDiv" style="display:none;"></div>
+<div id="floorThreeDiv" style="display:none;"></div>
+<div id="floorFourDiv" style="display:none;"></div>
+<div id="weeklyTotal" style="display:none;"></div>
+</head>
+</html>
